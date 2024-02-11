@@ -6,9 +6,10 @@ Feature: Automation UI Testing for Midtrans Demo Store Feature
     Given [midtransdemo] User tried to open midtrans store page
 
   @Positive
-  Scenario Outline:
+  Scenario Outline: Verify Midtrans Demo Store Page with '<reason>'
     When [midtransdemo] User click on Buy Now
     Then [midtransdemo] User click on Checkout
+    Then [midtransdemo] User wait for 2 second
     And  [midtransdemo] payment method popup should be showing up
     Then [midtransdemo] user choose on Credit Card payment method
     And  [midtransdemo] user tried to input card number with number '<cardNumber>'
@@ -26,5 +27,6 @@ Feature: Automation UI Testing for Midtrans Demo Store Feature
 
 
     Examples:
-      | cardNumber  | expirationDate  | cvv     | token   | promoType |
-      | default     | default         | default | default |           |
+      | cardNumber  | expirationDate  | cvv     | token   | promoType   | reason              |
+      | default     | default         | default | default | none        | user without promo  |
+#      | default     | default         | default | default | with promo  | user with promo     |

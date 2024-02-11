@@ -1,15 +1,14 @@
 package org.midtransdemo.tests.hooks;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import net.thucydides.core.pages.PageObject;
 import org.junit.After;
 import org.junit.Before;
+import org.midtransdemo.tests.utils.CommonUtility;
 
-public class CucumberHooks extends PageObject {
+public class CucumberHooks extends CommonUtility {
 
     @After
     public void afterRun(){
-
+        initializeChrome().close();
     }
 
     @Before

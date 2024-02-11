@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         glue = {"org.midtransdemo.tests.steps",
                 "org.midtransdemo.tests.hooks"},
         objectFactory = SerenityObjectFactory.class,
+        stepNotifications = true,
         tags = "@MidtransDemoStoreFeature")
 public class CucumberRunner {
 

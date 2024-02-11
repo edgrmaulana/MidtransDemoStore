@@ -9,7 +9,7 @@
 
     <properties>
         <runner.name>CucumberRunner</runner.name>
-        <serenity.version>3.9.8</serenity.version>
+        <serenity.version>4.0.48</serenity.version>
         <spring.version>5.3.31</spring.version>
         <cucumber.version>7.15.0</cucumber.version>
         <lombok.version>1.18.30</lombok.version>
@@ -97,7 +97,6 @@
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
             <version>${serenity.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
