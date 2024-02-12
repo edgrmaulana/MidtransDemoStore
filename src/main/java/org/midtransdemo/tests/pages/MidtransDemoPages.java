@@ -11,6 +11,9 @@ public class MidtransDemoPages extends UIUtility {
     @FindBy(css = ".btn.buy")
     WebElementFacade buyNowButton;
 
+    @FindBy(xpath = "//input[@type='email']")
+    WebElementFacade emailInCheckout;
+
     @FindBy(css = ".cart-checkout")
     WebElementFacade checkoutButton;
 
@@ -35,6 +38,32 @@ public class MidtransDemoPages extends UIUtility {
     @FindBy(css = "button[type='button']")
     WebElementFacade payNowButton;
 
+    @FindBy(css = "#otp")
+    WebElementFacade otpToken;
+
+    @FindBy(css = ".header-amount")
+    WebElementFacade headerAmount;
+
+    @FindBy(css = "#txn_amount")
+    WebElementFacade transactionAmount;
+
+    @FindBy(css = "#card_number")
+    WebElementFacade cardNumber;
+
+    @FindBy(css = "button[value='ok']")
+    WebElementFacade payNow3DS;
+
+    @FindBy(xpath = "//span[normalize-space()='Thank you for your purchase.']")
+    WebElementFacade thankyouHomepage;
+
+    @FindBy(xpath = "//span[normalize-space()='Sorry, something went wrong.']")
+    WebElementFacade errorHomepage;
+
+    @FindBy(css = ".cancel-modal-title")
+    WebElementFacade paymentDeclined;
+
+    @FindBy(css = ".card-warning.text-failed")
+    WebElementFacade cardErrorNotification;
 
 
 //    --------------- Click Action
@@ -47,7 +76,6 @@ public class MidtransDemoPages extends UIUtility {
     }
 
     public void clickCreditcardPaymentMethod(){
-        switchToIFrame();
         clickByWebElementFacade(creditCardPayment);
     }
 
@@ -63,6 +91,10 @@ public class MidtransDemoPages extends UIUtility {
         clickByWebElementFacade(payNowButton);
     }
 
+    public void clickOn3DSPayNow(){
+        clickByWebElementFacade(payNow3DS);
+    }
+
 //    --------------- Input Text Action
     public void inputCreditCardNumber(String value){
         inputText(value, creditCardNumber);
@@ -76,11 +108,48 @@ public class MidtransDemoPages extends UIUtility {
         inputText(value, creditCardCvv);
     }
 
+    public void inputOtpToken(String value){
+        inputText(value, otpToken);
+    }
+
+    public void deleteEmailText(){
+        deleteText(emailInCheckout);
+    }
+
 
 //    --------------- Verify Action
 
-    public void isPaymentMethodPageVisible(){
-        isElementVisibleByWeblementFacade(creditCardPayment);
+    public Boolean isPaymentMethodPageVisible(){
+        switchToIFrame();
+        return isElementVisibleByWebElementFacade(creditCardPayment);
+    }
+
+    public Boolean is3dsPageVisible(){
+        switchTo3DSIFrame();
+        return isElementVisibleByWebElementFacade(otpToken);
+    }
+
+    public Boolean isThankyouInHomepageVisible(){
+        return isElementVisibleByWebElementFacade(thankyouHomepage);
+    }
+
+    public Boolean isPaymentDeclinedPopupVisible(String value){
+        if (value.equalsIgnoreCase("Payment declined by bank")){
+            switchToIFrame();
+        }
+        return isElementVisibleByWebElementFacade(paymentDeclined);
+    }
+
+    public Boolean isErrorHomepageNotificationVisible(){
+        return isElementVisibleByWebElementFacade(errorHomepage);
+    }
+
+    public Boolean isPayNowButtonDisabled(){
+        return isElementDisabledByWebElementFacade(payNowButton);
+    }
+
+    public Boolean isCardErrorWarningVisible(){
+        return isElementVisibleByWebElementFacade(cardErrorNotification);
     }
 
 //    --------------- Hover Action
@@ -91,5 +160,31 @@ public class MidtransDemoPages extends UIUtility {
         } else if (value.equalsIgnoreCase("with promo")){
             scrollPage(labelFlashSalePromo);
         }
+    }
+
+    //    --------------- Get Text Action
+
+    public String getHeaderAmount(){
+        return getTextByWebElementFacade(headerAmount);
+    }
+
+    public String getTransactionAmount(){
+        return getTextByWebElementFacade(transactionAmount);
+    }
+
+    public String getCreditCardNumber(){
+        return getTextByWebElementFacade(cardNumber);
+    }
+
+    public String getPaymentDeclinedText(){
+        return getTextByWebElementFacade(paymentDeclined);
+    }
+
+    public String getErrorMessageHomepage(){
+        return getTextByWebElementFacade(errorHomepage);
+    }
+
+    public String getCardErrorMessage(){
+        return getTextByWebElementFacade(cardErrorNotification);
     }
 }
