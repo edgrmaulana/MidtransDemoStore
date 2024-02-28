@@ -1,7 +1,6 @@
 package org.midtransdemo.tests.utils;
 
 import net.serenitybdd.core.pages.PageObject;
-import org.htmlunit.xpath.operations.Bool;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;

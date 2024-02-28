@@ -8,7 +8,6 @@ public class CucumberHooks extends CommonUtility {
 
     @After
     public void afterRun(){
-        initializeChrome().close();
     }
 
     @Before
